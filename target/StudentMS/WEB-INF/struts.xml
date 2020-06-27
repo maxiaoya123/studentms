@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <package name="default" namespace="/" extends="struts-default">
+        <!--管理员登陆-->
+        <action name="admin" class="Action.AdminAction">
+            <result name="success" type="chain" >findALL</result>
+            <result name="login">/index.jsp</result>
+        </action>
+        <!--查询全部-->
+        <action name="findALL" class="Action.StudentAction" method="findALL">
+            <result name="success" >/student_query.jsp</result>
+            <result name="error"> /error.jsp</result>
+        </action>
+        <!--模糊查询-->
+        <action name="unclearFind" class="Action.StudentAction" method="find">
+            <result name="success" >/student_query.jsp</result>
+            <result name="error"> /error.jsp</result>
+        </action>
+        <!--通过院系模糊查询-->
+        <action name="dept" class="Action.StudentAction" method="Finddept">
+            <result name="success" >/student_query.jsp</result>
+            <result name="error"> /error.jsp</result>
+        </action>
+        <!--修改update-->
+        <action name="update" class="Action.StudentAction" method="update">
+            <result name="success" type="chain">findALL</result>
+            <result name="error"> /error.jsp</result>
+        </action>
+        <!--删除delete-->
+        <action name="delete" class="Action.StudentAction" method="delete">
+            <result name="success" type="chain">findALL</result>
+            <result name="error"> /error.jsp</result>
+        </action>
+        <!--add-->
+        <action name="add" class="Action.StudentAction" method="add">
+            <result name="success" type="chain">findALL</result>
+            <result name="error"> /error.jsp</result>
+        </action>
+        <!--学生登录查询-->
+        <action name="login" class="Action.StudentAction" method="login">
+            <result name="success">/student.jsp</result>
+            <result name="error"> /error.jsp</result>
+        </action>
+        <!--学生更新密码-->
+        <action name="updateme" class="Action.StudentAction" method="update">
+            <result name="success">/student_login.jsp</result>
+            <result name="error"> /error.jsp</result>
+        </action>
+    </package>
+</struts>

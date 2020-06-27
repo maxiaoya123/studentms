@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!--配置数据库方言-->
+    <property name="dialect">
+      org.hibernate.dialect.MySQL5Dialect
+    </property>
+    <!--数据源：数据库连接池-->
+    <property name="connection.provider_class">
+      com.alibaba.druid.support.hibernate.DruidConnectionProvider
+    </property>
+    <property name="driverClassName">com.mysql.cj.jdbc.Driver</property>
+    <property name="username">root</property>
+    <property name="password">123456</property>
+    <property name="url">
+      jdbc:mysql://localhost:3306/StudentMS?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2b8
+    </property>
+    <!--开启SQL统计-->
+    <property name="filters">stat</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="show_sql">true</property><!--为了让hinbernate输出执行的底层的sql语句-->
+    <property name="format_sql">true</property><!--让输出的底层执行的sql语句有一定的格式-->
+    <!--注册实体类，全限定类名 -->
+    <mapping class="PO.Student"/>
+    <mapping class="PO.Admin"/>
+    <mapping class="Action.StudentAction"/>
+    <mapping class="Action.AdminAction"/>
+    <mapping class="Dao.HbnUtil"/>
+
+  </session-factory>
+</hibernate-configuration>
